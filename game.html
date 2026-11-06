@@ -1,0 +1,502 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lần cược cuối - Quiz</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background: #001e29;
+        color: white;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 25px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 760px;
+        background: #062d3a;
+        border: 1px solid #087e91;
+        border-radius: 18px;
+        padding: 35px;
+        box-shadow: 0 0 30px rgba(0, 220, 255, 0.08);
+    }
+
+    .brand {
+        text-align: center;
+        color: #00d9ee;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 4px;
+        margin-bottom: 12px;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 28px;
+        margin: 0 0 10px;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #a8c5ce;
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+
+    .progress-info {
+        display: flex;
+        justify-content: space-between;
+        color: #a8c5ce;
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 7px;
+        background: #194653;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 30px;
+    }
+
+    .progress {
+        height: 100%;
+        width: 0%;
+        background: #00d9ee;
+        transition: width 0.3s ease;
+    }
+
+    .question-number {
+        color: #00d9ee;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .question {
+        font-size: 21px;
+        line-height: 1.5;
+        margin-bottom: 25px;
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .option {
+        width: 100%;
+        padding: 16px;
+        background: #0b3b49;
+        border: 1px solid #28606c;
+        border-radius: 10px;
+        color: white;
+        font-size: 15px;
+        text-align: left;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .option:hover:not(:disabled) {
+        background: #105365;
+        border-color: #00d9ee;
+        transform: translateY(-2px);
+    }
+
+    .option:disabled {
+        cursor: default;
+        opacity: 1;
+    }
+
+    .option.correct {
+        background: #124d42;
+        border-color: #38d6a5;
+    }
+
+    .option.wrong {
+        background: #59333a;
+        border-color: #ff7777;
+    }
+
+    .feedback {
+        display: none;
+        margin-top: 22px;
+        padding: 18px;
+        background: #0b3b49;
+        border-left: 4px solid #00d9ee;
+        border-radius: 8px;
+        line-height: 1.7;
+    }
+
+    .feedback strong {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .next-btn, .finish-btn {
+        display: none;
+        margin-top: 22px;
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 9px;
+        background: #00c8df;
+        color: #00232c;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .next-btn:hover, .finish-btn:hover {
+        background: #68efff;
+    }
+
+    .result {
+        display: none;
+        text-align: center;
+        line-height: 1.7;
+    }
+
+    .score {
+        color: #00d9ee;
+        font-size: 55px;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+
+    .result-message {
+        color: #c5dce2;
+        margin-bottom: 25px;
+    }
+
+    .footer {
+        text-align: center;
+        color: #668b96;
+        font-size: 12px;
+        margin-top: 28px;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            padding: 23px;
+        }
+
+        h1 {
+            font-size: 23px;
+        }
+
+        .question {
+            font-size: 18px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="brand">Lần cược cuối</div>
+
+    <h1>THỬ THÁCH NHẬN THỨC</h1>
+
+    <p class="subtitle">
+        5 câu hỏi. 5 tình huống.
+        Bạn có nhận ra những rủi ro đằng sau cờ bạc trực tuyến?
+    </p>
+
+    <div id="quiz">
+
+        <div class="progress-info">
+            <span id="question-count">Câu 1 / 5</span>
+            <span id="score-display">Điểm: 0</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <div class="question-number" id="question-number">
+            CÂU HỎI 01
+        </div>
+
+        <div class="question" id="question"></div>
+
+        <div class="options" id="options"></div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="next-btn" id="next-btn" onclick="nextQuestion()">
+            Câu tiếp theo →
+        </button>
+
+    </div>
+
+    <div class="result" id="result">
+
+        <div class="brand">KẾT THÚC THỬ THÁCH</div>
+
+        <h1>KẾT QUẢ CỦA BẠN</h1>
+
+        <div class="score" id="final-score">0/5</div>
+
+        <p class="result-message" id="result-message"></p>
+
+        <button class="finish-btn" id="finish-btn"
+                onclick="window.location.href='trang_chu.html'">
+            Tiếp tục →
+        </button>
+
+    </div>
+
+    <div class="footer">
+        LẦN CƯỢC CUỐI — NHẬN DIỆN RỦI RO, BẢO VỆ TƯƠNG LAI
+    </div>
+
+</div>
+
+<script>
+
+const questions = [
+
+    {
+        question: `Một người bạn gửi cho bạn đường link tham gia một trò chơi cá cược trực tuyến và quảng cáo rằng có thể kiếm tiền dễ dàng, không có rủi ro. Bạn nên làm gì?`,
+
+        options: [
+            "A. Tham gia thử vì không mất gì khi chơi thử.",
+            "B. Nhấn vào đường link để kiểm tra trước.",
+            "C. Từ chối và cảnh giác với lời mời kiếm tiền dễ dàng."
+        ],
+
+        answer: 2,
+
+        explanation: "Những lời mời gọi kiếm tiền nhanh chóng thường được sử dụng để thu hút người tham gia. Không nên truy cập đường link đáng ngờ hoặc cung cấp thông tin cá nhân."
+    },
+
+    {
+        question: `Sau khi thua một khoản tiền, một người nghĩ rằng mình cần tiếp tục chơi để lấy lại số tiền đã mất. Đây là biểu hiện của điều gì?`,
+
+        options: [
+            "A. Tâm lý muốn gỡ lại khoản tiền đã thua.",
+            "B. Khả năng kiểm soát tài chính tốt.",
+            "C. Một cách hợp lý để giải quyết vấn đề."
+        ],
+
+        answer: 0,
+
+        explanation: "Đây là tâm lý gỡ gạc. Việc cố lấy lại khoản tiền đã mất có thể khiến một người tiếp tục tham gia, mất kiểm soát và chịu thêm thiệt hại."
+    },
+
+    {
+        question: `Bạn bắt gặp một quảng cáo trên mạng xã hội với nội dung:
+
+“ĐỐI TÁC TIN CẬY CỦA SUNWIN - NỔ HŨ 10 TỶ”
+
+Bạn nên đánh giá quảng cáo này như thế nào?`,
+
+        options: [
+            "A. Đây là cơ hội kiếm tiền hấp dẫn.",
+            "B. Có thể đáng tin nếu quảng cáo có nhiều lượt thích.",
+            "C. Đây là dấu hiệu đáng ngờ vì sử dụng con số tiền thưởng lớn và lời khẳng định hấp dẫn để thu hút người tham gia."
+        ],
+
+        answer: 2,
+
+        explanation: "Những lời quảng cáo về khoản thưởng khổng lồ hoặc cam kết lợi nhuận cần được kiểm chứng. Lượt thích, bình luận hay danh xưng 'đối tác tin cậy' không chứng minh nền tảng đó an toàn hoặc hợp pháp."
+    },
+
+    {
+        question: `Một người thường xuyên dành nhiều giờ tham gia cá cược, bỏ bê việc học, liên tục nghĩ đến trò chơi dù đã thua nhiều lần. Điều này cho thấy điều gì?`,
+
+        options: [
+            "A. Người đó đang giải trí bình thường.",
+            "B. Người đó có dấu hiệu mất kiểm soát hành vi cá cược.",
+            "C. Người đó chỉ cần tìm một trò chơi khác."
+        ],
+
+        answer: 1,
+
+        explanation: "Khi việc cá cược chiếm quá nhiều thời gian, ảnh hưởng đến học tập và sinh hoạt, đồng thời khó dừng lại, đó là những dấu hiệu cảnh báo cần được quan tâm."
+    },
+
+    {
+        question: `Một người bạn của bạn đã tham gia cá cược trực tuyến, bị thua tiền và không biết phải làm gì. Bạn nên khuyên bạn ấy như thế nào?`,
+
+        options: [
+            "A. Tiếp tục chơi để tìm cách lấy lại số tiền đã mất.",
+            "B. Vay tiền để giải quyết khoản thua.",
+            "C. Dừng tham gia, không tìm cách gỡ gạc và tìm sự hỗ trợ từ người thân đáng tin cậy."
+        ],
+
+        answer: 2,
+
+        explanation: "Điều cần thiết là dừng việc cá cược, tránh vay mượn để tiếp tục chơi và chia sẻ vấn đề với người thân đáng tin cậy để được hỗ trợ."
+    }
+
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+const questionElement = document.getElementById("question");
+const optionsElement = document.getElementById("options");
+const feedbackElement = document.getElementById("feedback");
+const nextButton = document.getElementById("next-btn");
+
+function showQuestion() {
+
+    answered = false;
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("question-count").textContent =
+        `Câu ${currentQuestion + 1} / ${questions.length}`;
+
+    document.getElementById("score-display").textContent =
+        `Điểm: ${score}`;
+
+    document.getElementById("question-number").textContent =
+        `CÂU HỎI ${String(currentQuestion + 1).padStart(2, "0")}`;
+
+    questionElement.textContent = q.question;
+
+    optionsElement.innerHTML = "";
+
+    feedbackElement.style.display = "none";
+    nextButton.style.display = "none";
+
+    document.getElementById("progress").style.width =
+        `${(currentQuestion / questions.length) * 100}%`;
+
+    q.options.forEach((option, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+        button.textContent = option;
+
+        button.onclick = () => checkAnswer(index, button);
+
+        optionsElement.appendChild(button);
+
+    });
+
+}
+
+function checkAnswer(selected, button) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const q = questions[currentQuestion];
+    const allButtons = document.querySelectorAll(".option");
+
+    allButtons.forEach(btn => btn.disabled = true);
+
+    if (selected === q.answer) {
+
+        score++;
+
+        button.classList.add("correct");
+
+        feedbackElement.innerHTML =
+            `<strong> CHÍNH XÁC!</strong>${q.explanation}`;
+
+    } else {
+
+        button.classList.add("wrong");
+
+        allButtons[q.answer].classList.add("correct");
+
+        feedbackElement.innerHTML =
+            `<strong> CHƯA CHÍNH XÁC!</strong>
+            Đáp án đúng là: ${q.options[q.answer]}<br><br>
+            ${q.explanation}`;
+
+    }
+
+    document.getElementById("score-display").textContent =
+        `Điểm: ${score}`;
+
+    feedbackElement.style.display = "block";
+
+    nextButton.style.display = "block";
+
+    if (currentQuestion === questions.length - 1) {
+        nextButton.textContent = "Xem kết quả →";
+    }
+
+}
+
+function nextQuestion() {
+
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+
+        showQuestion();
+
+    } else {
+
+        showResult();
+
+    }
+
+}
+
+function showResult() {
+
+    document.getElementById("quiz").style.display = "none";
+
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("progress").style.width = "100%";
+
+    document.getElementById("final-score").textContent =
+        `${score}/${questions.length}`;
+
+    let message = "";
+
+    if (score === 5) {
+
+        message = "Xuất sắc! Bạn đã nhận diện tốt những dấu hiệu rủi ro và biết cách đưa ra lựa chọn an toàn.";
+
+    } else if (score >= 3) {
+
+        message = "Khá tốt! Bạn đã nắm được nhiều kiến thức quan trọng. Hãy tiếp tục tìm hiểu để nhận diện rủi ro tốt hơn.";
+
+    } else {
+
+        message = "Đừng lo về điểm số. Điều quan trọng là hiểu được những rủi ro và biết cách bảo vệ bản thân trước các lời mời gọi cá cược.";
+
+    }
+
+    document.getElementById("result-message").textContent = message;
+
+    document.getElementById("finish-btn").style.display = "block";
+
+}
+
+showQuestion();
+
+</script>
+
+</body>
+</html>

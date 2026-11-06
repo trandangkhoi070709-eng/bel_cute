@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thông điệp</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #001e29;
+        color: white;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 15px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 850px;
+        text-align: center;
+    }
+
+    h1 {
+        color: #57bade;
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+
+    .subtitle {
+        color: #a9cbd5;
+        font-size: 17px;
+        margin-bottom: 35px;
+    }
+
+    .message {
+        background: #073442;
+        border: 1px solid #286477;
+        border-radius: 14px;
+        padding: 35px;
+        text-align: left;
+        line-height: 1.8;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .message p {
+        font-size: 17px;
+        margin: 12px 0;
+    }
+
+    .highlight {
+        color: #57bade;
+        font-weight: bold;
+    }
+
+    .warning {
+        color: #ffd477;
+        font-weight: bold;
+    }
+
+    h2 {
+        color: #57bade;
+        font-size: 23px;
+        margin-top: 30px;
+    }
+
+    .slogan {
+        text-align: center;
+        color: #ffd477;
+        font-size: 22px;
+        font-weight: bold;
+        line-height: 1.5;
+        margin-top: 30px;
+    }
+
+    .ending {
+        text-align: center;
+        color: #a9cbd5;
+        font-style: italic;
+        margin-top: 15px;
+    }
+
+    .home {
+        margin-top: 35px;
+    }
+
+    .home button {
+        padding: 15px 30px;
+        background: #57bade;
+        color: #001e29;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .home button:hover {
+        background: white;
+        transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 27px;
+        }
+
+        .message {
+            padding: 22px;
+        }
+
+        .message p {
+            font-size: 15px;
+        }
+
+        .slogan {
+            font-size: 19px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>BẠN VỪA KẾT THÚC MỘT VÁN CHƠI.</h1>
+
+    <p class="subtitle">
+        Nhưng có những trò chơi mà bạn không nên bắt đầu.
+    </p>
+
+    <div class="message">
+
+        <p>
+            Bạn thấy đấy, <span class="highlight">cờ bạc có thể bắt đầu từ sự tò mò</span>,
+            một chút vui vẻ hay suy nghĩ rằng:
+            <i>"Chơi thử thôi, chắc không sao đâu."</i>
+        </p>
+
+        <p>
+            Nhưng chính cảm giác muốn thắng, muốn gỡ lại những gì đã mất
+            và hy vọng vào lần tiếp theo có thể khiến con người
+            bị cuốn vào vòng xoáy cờ bạc.
+        </p>
+
+        <p class="warning">
+            Đừng nhầm lẫn giữa mô phỏng và thực tế.
+        </p>
+
+        <p>
+            Bạn vừa chơi một trò mô phỏng. Thắng hay thua cũng không làm
+            bạn mất đi bất cứ thứ gì. Nhưng ngoài đời, cờ bạc có thể khiến
+            bạn đánh đổi tiền bạc, thời gian, các mối quan hệ
+            và cả tương lai của mình.
+        </p>
+
+        <h2>HÃY NHỚ RẰNG:</h2>
+
+        <p>
+            Không có chiến thắng nào đảm bảo cho lần chơi tiếp theo.
+            Và càng không có khoản thua nào đáng để bạn tiếp tục đánh đổi.
+        </p>
+
+        <div class="slogan">
+            ĐỪNG ĐÁNH ĐỔI TƯƠNG LAI<br>
+            ĐỂ THEO ĐUỔI MAY RỦI.
+        </div>
+
+        <p class="ending">
+            Biết dừng lại cũng là một chiến thắng.
+        </p>
+
+    </div>
+
+    <div class="home">
+        <button onclick="window.location.href='trang_chu.html'">
+            TRANG CHỦ
+        </button>
+    </div>
+
+</div>
+
+</body>
+</html>

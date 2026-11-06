@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bel_cuti</title>
+
+<style>
+    body {
+        background: #001e29;
+        color: white;
+        font-family: Arial, sans-serif;
+        margin: 0;
+    }
+
+    h1 {
+        color: #57bade;
+        text-align: center;
+        font-size: 36px;
+        margin-top: 35px;
+    }
+
+    p {
+        text-align: center;
+        font-size: 20px;
+        color: #ffffff;
+    }
+
+    .game {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 40px auto;
+    }
+
+    .game iframe {
+        width: 90%;
+        max-width: 1100px;
+        aspect-ratio: 485 / 402;
+        height: auto;
+        border: none;
+        border-radius: 12px;
+    }
+
+    .finish {
+        text-align: center;
+        margin: 40px auto 60px;
+    }
+
+    .finish button {
+        padding: 16px 32px;
+        background: #57bade;
+        color: #001e29;
+        border: none;
+        border-radius: 8px;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .finish button:hover {
+        background: #ffffff;
+        transform: scale(1.05);
+    }
+</style>
+</head>
+
+<body>
+
+<h1>PHÒNG CHỐNG CỜ BẠC TRÊN KHÔNG GIAN MẠNG</h1>
+
+<p>Trải nghiệm mô phỏng giáo dục về cờ bạc trực tuyến.</p>
+
+<div class="game">
+    <iframe
+        src="https://scratch.mit.edu/projects/1154066411/embed"
+        allowtransparency="true"
+        scrolling="no"
+        allowfullscreen>
+    </iframe>
+</div>
+
+<div class="finish">
+    <button onclick="window.location.href='thong_diep.html'">
+        KẾT THÚC MÔ PHỎNG
+    </button>
+</div>
+
+</body>
+</html>

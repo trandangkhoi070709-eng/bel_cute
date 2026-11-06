@@ -1,0 +1,553 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>trang chủ</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        background: #f4f6f7;
+        color: #202122;
+        font-family: Arial, sans-serif;
+    }
+
+    /* THANH ĐẦU TRANG */
+
+    header {
+        background: #001e29;
+        color: white;
+        padding: 18px 35px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 4px solid #57bade;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #57bade;
+        letter-spacing: 1px;
+    }
+
+    .header-note {
+        color: #b8d6df;
+        font-size: 14px;
+    }
+
+    /* BỐ CỤC CHÍNH */
+
+    .layout {
+        display: grid;
+        grid-template-columns: 210px minmax(0, 1fr);
+        gap: 30px;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 30px;
+    }
+
+    /* THANH BÊN */
+
+    aside {
+        border-right: 1px solid #c8ccd1;
+        padding-right: 20px;
+    }
+
+    aside h3 {
+        font-size: 15px;
+        color: #54595d;
+        border-bottom: 1px solid #c8ccd1;
+        padding-bottom: 10px;
+    }
+
+    aside a {
+        display: block;
+        color: #0645ad;
+        text-decoration: none;
+        font-size: 14px;
+        padding: 8px 5px;
+    }
+
+    aside a:hover {
+        background: #e5f4f9;
+        text-decoration: underline;
+    }
+
+    /* NỘI DUNG BÀI VIẾT */
+
+    main {
+        min-width: 0;
+        background: white;
+        padding: 30px 40px;
+        border: 1px solid #c8ccd1;
+    }
+
+    .category {
+        color: #72777d;
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        font-family: Georgia, serif;
+        font-size: 34px;
+        font-weight: normal;
+        margin: 0;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #a2a9b1;
+    }
+
+    .intro {
+        font-family: Georgia, serif;
+        font-size: 16px;
+        line-height: 1.8;
+        margin-top: 20px;
+    }
+
+    .notice {
+        background: #eaf7fb;
+        border-left: 4px solid #57bade;
+        padding: 14px 18px;
+        margin: 25px 0;
+        line-height: 1.6;
+        font-size: 14px;
+    }
+
+    /* HỘP THÔNG TIN */
+
+    .infobox {
+        float: right;
+        width: 270px;
+        margin: 0 0 20px 25px;
+        border: 1px solid #a2a9b1;
+        background: #f8f9fa;
+        font-size: 14px;
+    }
+
+    .infobox-title {
+        background: #001e29;
+        color: white;
+        text-align: center;
+        padding: 12px;
+        font-weight: bold;
+        font-size: 17px;
+    }
+
+    .infobox-content {
+        padding: 15px;
+        line-height: 1.7;
+    }
+
+    .infobox-content p {
+        border-bottom: 1px solid #eaecf0;
+        padding-bottom: 8px;
+    }
+
+    /* MỤC LỤC */
+
+    .toc {
+        display: inline-block;
+        min-width: 270px;
+        max-width: 100%;
+        background: #f8f9fa;
+        border: 1px solid #a2a9b1;
+        padding: 15px 25px;
+        margin: 20px 0 30px;
+    }
+
+    .toc-title {
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .toc ol {
+        padding-left: 25px;
+        line-height: 1.9;
+        margin: 0;
+    }
+
+    a {
+        color: #0645ad;
+    }
+
+    /* CÁC ĐỀ MỤC */
+
+    section {
+        margin-top: 35px;
+        scroll-margin-top: 20px;
+    }
+
+    h2 {
+        font-family: Georgia, serif;
+        font-size: 25px;
+        font-weight: normal;
+        border-bottom: 1px solid #a2a9b1;
+        padding-bottom: 8px;
+    }
+
+    h3 {
+        font-size: 19px;
+        margin-top: 25px;
+    }
+
+    section p {
+        font-size: 16px;
+        line-height: 1.8;
+        text-align: justify;
+    }
+
+    /* DANH SÁCH */
+
+    section ul {
+        line-height: 1.9;
+    }
+
+    /* KHU VỰC TRẢI NGHIỆM */
+
+    .experience {
+        background: #073442;
+        color: white;
+        padding: 25px;
+        border-radius: 8px;
+        margin-top: 30px;
+    }
+
+    .experience h2 {
+        color: #57bade;
+        border-color: #286477;
+    }
+
+    .experience p {
+        line-height: 1.7;
+    }
+
+    .experience button {
+        background: #57bade;
+        color: #001e29;
+        border: none;
+        padding: 13px 22px;
+        font-size: 15px;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .experience button:hover {
+        background: white;
+        transform: translateY(-2px);
+    }
+
+    /* CHÂN TRANG */
+
+    footer {
+        background: #001e29;
+        color: #b8d6df;
+        text-align: center;
+        padding: 25px;
+        font-size: 13px;
+        margin-top: 40px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+        .layout {
+            grid-template-columns: 1fr;
+            padding: 15px;
+        }
+
+        aside {
+            border-right: none;
+            border-bottom: 1px solid #c8ccd1;
+            padding-bottom: 15px;
+        }
+
+        main {
+            padding: 22px;
+        }
+
+        .infobox {
+            float: none;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        header {
+            padding: 15px 20px;
+        }
+
+        .header-note {
+            display: none;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">LẦN CƯỢC CUỐI</div>
+    <div class="header-note">PHÒNG CHỐNG CỜ BẠC TRỰC TUYẾN</div>
+</header>
+
+<div class="layout">
+
+    <!-- THANH ĐIỀU HƯỚNG -->
+
+    <aside>
+        <h3>ĐIỀU HƯỚNG</h3>
+
+        <a href="#top">Trang đầu</a>
+        <a href="#overview">Tổng quan</a>
+        <a href="#operation">Cách thức hoạt động</a>
+        <a href="#psychology">Tâm lý người chơi</a>
+        <a href="#consequences">Hệ quả</a>
+        <a href="#prevention">Phòng tránh</a>
+        <a href="#references">Tham khảo</a>
+
+        <h3>TRẢI NGHIỆM</h3>
+        <a href="TTT.html">Mô phỏng tương tác</a>
+    </aside>
+
+    <!-- BÀI VIẾT -->
+
+    <main id="top">
+
+        <div class="category">
+            Trần Đăng Khôi / 23:36/06/11/2026
+        </div>
+
+        <h1>Cờ bạc trực tuyến</h1>
+
+        <p class="intro">
+            <b>Cờ bạc trực tuyến</b> là hình thức tham gia các trò chơi
+            hoặc hoạt động cá cược có yếu tố may rủi thông qua Internet,
+            thường gắn với việc đặt cược bằng tiền hoặc tài sản có giá trị.
+            Sự phát triển của công nghệ và thiết bị di động khiến các hoạt
+            động này có thể tiếp cận người dùng ở nhiều nơi và nhiều thời điểm.
+        </p>
+
+        <!-- HỘP THÔNG TIN -->
+
+        <div class="infobox">
+            <div class="infobox-title">
+                CỜ BẠC TRỰC TUYẾN
+            </div>
+
+            <div class="infobox-content">
+                <p><b>Phân loại:</b> Hoạt động cá cược qua Internet</p>
+                <p><b>Phương tiện:</b> Website, ứng dụng, mạng xã hội</p>
+                <p><b>Đặc điểm:</b> Tiếp cận nhanh, liên tục</p>
+                <p><b>Rủi ro:</b> Tài chính, tâm lý, xã hội</p>
+                <p><b>Chủ đề:</b> An toàn không gian mạng</p>
+            </div>
+        </div>
+
+        <div class="notice">
+            <b>Lưu ý:</b> Bài viết được xây dựng nhằm mục đích giáo dục,
+            nâng cao nhận thức về những nguy cơ của cờ bạc trực tuyến.
+            Nội dung không cổ súy hay khuyến khích tham gia cá cược.
+        </div>
+
+        <!-- MỤC LỤC -->
+
+        <div class="toc">
+            <div class="toc-title">Mục lục</div>
+
+            <ol>
+                <li><a href="#overview">Tổng quan</a></li>
+                <li><a href="#operation">Cách thức hoạt động</a></li>
+                <li><a href="#psychology">Tâm lý người chơi</a></li>
+                <li><a href="#consequences">Những hệ quả</a></li>
+                <li><a href="#prevention">Phòng tránh</a></li>
+                <li><a href="#references">Tham khảo</a></li>
+            </ol>
+        </div>
+
+        <!-- NỘI DUNG -->
+
+        <section id="overview">
+            <h2>1. Tổng quan</h2>
+
+            <p>
+                Cờ bạc trực tuyến là một vấn đề đáng quan tâm trong xã hội
+                hiện đại. Khác với hình thức cá cược truyền thống, hoạt động
+                này diễn ra trên môi trường số, nơi người dùng có thể tiếp
+                cận các nền tảng thông qua điện thoại, máy tính và Internet.
+            </p>
+
+            <p>
+                Một số nền tảng có thể được quảng bá dưới hình thức trò chơi
+                giải trí, thử vận may hoặc cơ hội kiếm tiền. Tuy nhiên,
+                việc sử dụng những cách gọi hấp dẫn không làm thay đổi
+                bản chất rủi ro của hoạt động cá cược.
+            </p>
+        </section>
+
+        <section id="operation">
+            <h2>2. Cách thức hoạt động</h2>
+
+            <p>
+                Các nền tảng cờ bạc trực tuyến thường sử dụng giao diện
+                website hoặc ứng dụng để tổ chức những trò chơi có yếu tố
+                may rủi. Người dùng có thể được yêu cầu tạo tài khoản,
+                tham gia trò chơi và thực hiện các hoạt động liên quan
+                đến tiền cược.
+            </p>
+
+            <h3>2.1. Những hình thức thường gặp</h3>
+
+            <ul>
+                <li>Cá cược thể thao trực tuyến.</li>
+                <li>Trò chơi dựa trên kết quả ngẫu nhiên.</li>
+                <li>Các trò chơi bài có yếu tố đặt cược.</li>
+                <li>Những nền tảng quảng bá trò chơi đổi thưởng.</li>
+            </ul>
+
+            <h3>2.2. Đặc điểm của môi trường trực tuyến</h3>
+
+            <p>
+                Tính thuận tiện, tốc độ truy cập nhanh và khả năng hoạt
+                động liên tục khiến người dùng dễ tiếp xúc với các hình
+                thức cá cược. Bên cạnh đó, quảng cáo và lời mời tham gia
+                có thể xuất hiện trên mạng xã hội hoặc các nền tảng khác.
+            </p>
+        </section>
+
+        <section id="psychology">
+            <h2>3. Tâm lý người chơi</h2>
+
+            <p>
+                Một trong những yếu tố khiến cờ bạc có nguy cơ gây nghiện
+                là sự kết hợp giữa kỳ vọng chiến thắng, yếu tố ngẫu nhiên
+                và mong muốn tiếp tục chơi sau mỗi kết quả.
+            </p>
+
+            <p>
+                Khi thua cuộc, một số người có xu hướng muốn gỡ lại số tiền
+                đã mất. Khi thắng, họ có thể hình thành kỳ vọng rằng mình
+                sẽ tiếp tục chiến thắng. Cả hai trạng thái đều có thể
+                khiến người chơi khó kiểm soát hành vi.
+            </p>
+
+            <h3>3.1. Vòng lặp tâm lý</h3>
+
+            <ul>
+                <li>Tò mò hoặc kỳ vọng chiến thắng.</li>
+                <li>Tham gia trò chơi.</li>
+                <li>Trải nghiệm kết quả thắng hoặc thua.</li>
+                <li>Muốn tiếp tục để thắng thêm hoặc gỡ lại.</li>
+                <li>Dần hình thành thói quen khó kiểm soát.</li>
+            </ul>
+        </section>
+
+        <section id="consequences">
+            <h2>4. Những hệ quả</h2>
+
+            <h3>4.1. Tài chính</h3>
+            <p>
+                Người tham gia có thể mất tiền, phát sinh nợ hoặc gặp
+                khó khăn trong việc quản lý tài chính cá nhân.
+            </p>
+
+            <h3>4.2. Tâm lý</h3>
+            <p>
+                Việc liên tục lo lắng về kết quả, thua lỗ hoặc mong muốn
+                gỡ lại có thể gây căng thẳng và ảnh hưởng đến đời sống
+                tinh thần.
+            </p>
+
+            <h3>4.3. Học tập và các mối quan hệ</h3>
+            <p>
+                Khi dành quá nhiều thời gian và sự chú ý cho cờ bạc,
+                người chơi có thể xao nhãng việc học, công việc và
+                những mối quan hệ xung quanh.
+            </p>
+        </section>
+
+        <section id="prevention">
+            <h2>5. Phòng tránh</h2>
+
+            <p>
+                Nhận thức được rủi ro là bước đầu tiên để bảo vệ bản thân
+                trước các hình thức cờ bạc trực tuyến.
+            </p>
+
+            <ul>
+                <li>Không tham gia các nền tảng cá cược trái phép.</li>
+                <li>Không tin vào những lời quảng cáo cam kết thắng tiền.</li>
+                <li>Không cung cấp thông tin cá nhân cho nền tảng đáng ngờ.</li>
+                <li>Chủ động từ chối lời mời tham gia cá cược.</li>
+                <li>Tìm kiếm sự hỗ trợ từ gia đình hoặc người đáng tin cậy
+                    khi gặp khó khăn trong việc kiểm soát hành vi.</li>
+            </ul>
+        </section>
+
+        <section id="references">
+    <h2>6. Tham khảo</h2>
+
+    <ol>
+        <li>
+            Wikipedia
+            <a href="https://vi.wikipedia.org/wiki/%C4%90%C3%A1nh_b%E1%BA%A1c"
+               target="_blank" rel="noopener noreferrer">
+                Đánh bạc
+            </a>.
+        </li>
+
+        <li>
+            Bộ Công an.
+            <a href="https://mps.gov.vn/chinh-sach-phap-luat/chi-tiet-cau-hoi/4831df1f-f18a-4db4-8f17-7e734a43313d"
+               target="_blank" rel="noopener noreferrer">
+                Hành vi tổ chức đánh bạc, chứa cờ bạc sẽ bị xử lý như thế nào?
+            </a>.
+        </li>
+    </ol>
+
+    <p>
+        Các tài liệu được sử dụng để tham khảo và phục vụ
+        mục đích giáo dục, nâng cao nhận thức.
+    </p>
+</section>
+
+        <!-- KHU VỰC TRẢI NGHIỆM -->
+
+        <div class="experience">
+            <h2>LẦN CƯỢC CUỐI — BẠN CÓ NHẬN RA RỦI RO?</h2>
+
+            <p>
+                Đọc lý thuyết là một chuyện. Nhận diện rủi ro trong
+                tình huống thực tế lại là chuyện khác.
+                Hãy thử trải nghiệm mô phỏng giáo dục dưới đây.
+            </p>
+
+            <button onclick="window.location.href='game.html'">
+                BẮT ĐẦU TRẢI NGHIỆM
+            </button>
+        </div>
+
+    </main>
+</div>
+
+<footer>
+    Lần cược cuối | DỰ ÁN GIÁO DỤC VỀ PHÒNG CHỐNG CỜ BẠC TRÊN KHÔNG GIAN MẠNG
+    <br><br>
+    Nội dung phục vụ mục đích nâng cao nhận thức cộng đồng.
+</footer>
+
+</body>
+</html>
